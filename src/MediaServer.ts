@@ -3,8 +3,8 @@ class MediaServer {
     constructor(
         private readonly _ip: string,
         private readonly _port: number,
-        private _runningRoomIds: string[],
-        private readonly _maxRoomCount: number
+        private _runningRoomIds: string[] = [],
+        private readonly _maxRoomCapacity: number
     ) {
     }
 
@@ -21,7 +21,7 @@ class MediaServer {
     }
 
     public canAddRoom = (): boolean => {
-        return this.roomCount < this._maxRoomCount;
+        return this.roomCount < this._maxRoomCapacity;
     }
 
     public hasRoom = (roomId: string): boolean => {
