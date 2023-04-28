@@ -1,3 +1,5 @@
+import {MediaServer} from "../MediaServer";
+
 export interface MediaServerRegisterRequest {
     readonly ip: string;
     readonly port: number;

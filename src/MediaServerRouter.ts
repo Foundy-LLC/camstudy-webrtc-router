@@ -1,6 +1,8 @@
 import {MediaServerRepository} from "./MediaServerRepository";
+import {MediaServer} from "./MediaServer";
 
 export class MediaServerRouter {
+
     private static _instance: MediaServerRouter;
 
     private _repository: MediaServerRepository = new MediaServerRepository()

@@ -1,4 +1,4 @@
-class MediaServer {
+export class MediaServer {
 
     constructor(
         private readonly _ip: string,
@@ -6,6 +6,14 @@ class MediaServer {
         private _runningRoomIds: string[] = [],
         private readonly _maxRoomCapacity: number
     ) {
+    }
+
+    public get ip(): string {
+        return this._ip;
+    }
+
+    public get port(): number {
+        return this._port;
     }
 
     public get roomCount(): number {

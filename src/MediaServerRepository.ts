@@ -1,3 +1,5 @@
+import {MediaServer} from "./MediaServer";
+
 export class MediaServerRepository {
 
     constructor(
