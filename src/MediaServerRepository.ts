@@ -1,17 +1,8 @@
 export class MediaServerRepository {
 
-    private static instance: MediaServerRepository;
-
-    private readonly _mediaServerBySocketId: Map<string, MediaServer> = new Map();
-
-    private constructor() {
-    }
-
-    public static getInstance(): MediaServerRepository {
-        if (!MediaServerRepository.instance) {
-            MediaServerRepository.instance = new MediaServerRepository();
-        }
-        return MediaServerRepository.instance;
+    constructor(
+        private readonly _mediaServerBySocketId: Map<string, MediaServer> = new Map()
+    ) {
     }
 
     public register = (socketId: string, mediaServer: MediaServer) => {
@@ -20,5 +11,9 @@ export class MediaServerRepository {
 
     public unregister = (socketId: string) => {
         this._mediaServerBySocketId.delete(socketId);
+    }
+
+    public getMediaServers = (): MediaServer[] => {
+        return [...this._mediaServerBySocketId.values()]
     }
 }
