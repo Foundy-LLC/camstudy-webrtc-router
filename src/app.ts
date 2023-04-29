@@ -6,10 +6,13 @@ import {MediaServerRegisterRequest, toMediaServer} from "./model/MediaServerRegi
 import {ResponseBody} from "./model/ResponseBody";
 import {MediaServerGetResponse} from "./model/MediaServerGetResponse";
 import {CREATED_ROOM, REGISTER_MEDIA_SERVER, REMOVED_ROOM} from "./constant/protocol";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
-const PORT = 9999; // TODO: Env로 대체
+const PORT = process.env.PORT!
 
 server.listen(PORT, () => {
     console.log(`Listening on port ${PORT}.`);
