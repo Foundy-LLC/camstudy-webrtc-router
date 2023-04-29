@@ -35,6 +35,11 @@ export class MediaServerRouter {
         mediaServer.removeRoom(roomId);
     }
 
+    public findServerByRoomId = (roomId: string): MediaServer | undefined => {
+        const mediaServers = this._repository.getMediaServers();
+        return mediaServers.find((server) => server.hasRoom(roomId));
+    }
+
     public findAvailableServer = (): MediaServer | undefined => {
         const mediaServers = this._repository.getMediaServers()
         let fewestRoomsServer: MediaServer | undefined;

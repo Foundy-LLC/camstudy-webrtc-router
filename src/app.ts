@@ -44,10 +44,11 @@ io.on("connection", (socket: Socket) => {
 
 // Client request handler
 
-app.get('/media-server', (req, res) => {
+app.get('/rooms/:roomId/media-server', (req, res) => {
     try {
+        const roomId = req.params.roomId;
         const router = MediaServerRouter.getInstance();
-        const mediaServer = router.findAvailableServer();
+        const mediaServer = router.findServerByRoomId(roomId) ?? router.findAvailableServer();
         if (mediaServer == null) {
             res.status(404).send(new ResponseBody({message: "가용한 미디어 서버가 존재하지 않습니다."}));
             return;

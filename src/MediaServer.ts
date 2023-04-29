@@ -31,4 +31,8 @@ export class MediaServer {
     public canAddRoom = (): boolean => {
         return this.roomCount < this._maxRoomCapacity;
     }
+
+    public hasRoom = (id: string): boolean => {
+        return this._runningRoomIds.some((e) => e === id);
+    }
 }
