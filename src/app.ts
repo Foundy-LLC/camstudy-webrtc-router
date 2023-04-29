@@ -5,6 +5,7 @@ import {MediaServerRouter} from "./MediaServerRouter";
 import {MediaServerRegisterRequest, toMediaServer} from "./model/MediaServerRegisterRequest";
 import {ResponseBody} from "./model/ResponseBody";
 import {MediaServerGetResponse} from "./model/MediaServerGetResponse";
+import {CREATED_ROOM, REGISTER_MEDIA_SERVER, REMOVED_ROOM} from "./constant/protocol";
 
 const app = express();
 const server = http.createServer(app);
@@ -27,16 +28,16 @@ io.on("connection", (socket: Socket) => {
         console.log("A media server has disconnected.");
     });
 
-    socket.on("registerMediaServer", (request: MediaServerRegisterRequest) => {
+    socket.on(REGISTER_MEDIA_SERVER, (request: MediaServerRegisterRequest) => {
         mediaServerRouter.register(socket.id, toMediaServer(request));
         console.log(`Registered a media server ${request.ip} with ${request.maxRoomCapacity} room capacity.`);
     });
 
-    socket.on("createdRoom", (roomId: string) => {
+    socket.on(CREATED_ROOM, (roomId: string) => {
         mediaServerRouter.addRoom(socket.id, roomId);
     });
 
-    socket.on("removedRoom", (roomId: string) => {
+    socket.on(REMOVED_ROOM, (roomId: string) => {
         mediaServerRouter.removeRoom(socket.id, roomId);
     });
 });
