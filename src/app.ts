@@ -27,17 +27,20 @@ io.on("connection", (socket: Socket) => {
         console.log("A media server has disconnected.");
     });
 
-    socket.on(REGISTER_MEDIA_SERVER, (request: MediaServerRegisterRequest) => {
+    socket.on(REGISTER_MEDIA_SERVER, (request: MediaServerRegisterRequest, successCallback: () => void) => {
         mediaServerRouter.register(socket.id, toMediaServer(request));
-        console.log(`Registered a media server ${request.ip} with ${request.maxRoomCapacity} room capacity.`);
+        console.log(`Registered a media server ${socket.id} with ${request.maxRoomCapacity} room capacity.`);
+        successCallback();
     });
 
     socket.on(CREATED_ROOM, (roomId: string) => {
         mediaServerRouter.addRoom(socket.id, roomId);
+        console.log(`Added a room: ${roomId} to ${socket.id} socket.`);
     });
 
     socket.on(REMOVED_ROOM, (roomId: string) => {
         mediaServerRouter.removeRoom(socket.id, roomId);
+        console.log(`Removed a room: ${roomId} from ${socket.id} socket.`);
     });
 });
 
