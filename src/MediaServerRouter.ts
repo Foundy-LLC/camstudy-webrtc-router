@@ -25,9 +25,14 @@ export class MediaServerRouter {
         this._repository.unregister(socketId);
     }
 
-    public findServerByRoomId = (roomId: string): MediaServer | undefined => {
-        const mediaServers = this._repository.getMediaServers()
-        return mediaServers.find((server: MediaServer) => server.hasRoom(roomId));
+    public addRoom = (socketId: string, roomId: string) => {
+        const mediaServer = this._repository.requireMediaServerBySocketId(socketId);
+        mediaServer.addRoom(roomId);
+    }
+
+    public removeRoom = (socketId: string, roomId: string) => {
+        const mediaServer = this._repository.requireMediaServerBySocketId(socketId);
+        mediaServer.removeRoom(roomId);
     }
 
     public findAvailableServer = (): MediaServer | undefined => {

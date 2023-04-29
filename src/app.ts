@@ -31,7 +31,13 @@ io.on("connection", (socket: Socket) => {
         console.log(`Registered a media server ${request.ip} with ${request.maxRoomCapacity} room capacity.`);
     });
 
-    // TODO: 방이 새로 개설되거나 방이 제거되었을 때 방 ID 받아서 처리하기
+    socket.on("createdRoom", (roomId: string) => {
+        mediaServerRouter.addRoom(socket.id, roomId);
+    });
+
+    socket.on("removedRoom", (roomId: string) => {
+        mediaServerRouter.removeRoom(socket.id, roomId);
+    });
 });
 
 // Client request handler

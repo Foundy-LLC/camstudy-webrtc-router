@@ -16,6 +16,14 @@ export class MediaServerRepository {
     }
 
     public getMediaServers = (): MediaServer[] => {
-        return [...this._mediaServerBySocketId.values()]
+        return [...this._mediaServerBySocketId.values()];
+    }
+
+    public requireMediaServerBySocketId = (socketId: string): MediaServer => {
+        const mediaServer = this._mediaServerBySocketId.get(socketId);
+        if (mediaServer == null) {
+            throw Error(`Cannot find a media server by socket id: ${socketId}`);
+        }
+        return mediaServer;
     }
 }
