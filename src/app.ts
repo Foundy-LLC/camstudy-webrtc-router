@@ -4,6 +4,7 @@ import {Server, Socket} from "socket.io";
 import {MediaServerRouter} from "./MediaServerRouter";
 import {MediaServerRegisterRequest, toMediaServer} from "./model/MediaServerRegisterRequest";
 import {ResponseBody} from "./model/ResponseBody";
+import {MediaServerGetResponse} from "./model/MediaServerGetResponse";
 
 const app = express();
 const server = http.createServer(app);
@@ -50,7 +51,7 @@ app.get('/media-server', (req, res) => {
             res.status(404).send(new ResponseBody({message: "가용한 미디어 서버가 존재하지 않습니다."}));
             return;
         }
-        res.status(200).send(new ResponseBody({
+        res.status(200).send(new ResponseBody<MediaServerGetResponse>({
             message: "접속 가능한 미디어 서버 정보를 성공적으로 얻었습니다.",
             data: {
                 ip: mediaServer.ip,
