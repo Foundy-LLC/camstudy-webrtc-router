@@ -1,4 +1,3 @@
 export interface MediaServerGetResponse {
-    ip: string;
-    port: number;
+    url: string;
 }

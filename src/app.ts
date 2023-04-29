@@ -60,8 +60,7 @@ app.get('/rooms/:roomId/media-server', (req, res) => {
         res.status(200).send(new ResponseBody<MediaServerGetResponse>({
             message: "접속 가능한 미디어 서버 정보를 성공적으로 얻었습니다.",
             data: {
-                ip: mediaServer.ip,
-                port: mediaServer.port,
+                url: mediaServer.url,
             }
         }));
     } catch (e) {

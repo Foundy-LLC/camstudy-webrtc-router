@@ -8,12 +8,8 @@ export class MediaServer {
     ) {
     }
 
-    public get ip(): string {
-        return this._ip;
-    }
-
-    public get port(): number {
-        return this._port;
+    public get url(): string {
+        return `http://${this._ip}:${this._port}`;
     }
 
     public get roomCount(): number {
