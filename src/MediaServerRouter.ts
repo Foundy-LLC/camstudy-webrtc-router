@@ -30,7 +30,7 @@ export class MediaServerRouter {
         return mediaServers.find((server: MediaServer) => server.hasRoom(roomId));
     }
 
-    public findServerThatHasFewestRooms = (): MediaServer | undefined => {
+    public findAvailableServer = (): MediaServer | undefined => {
         const mediaServers = this._repository.getMediaServers()
         let fewestRoomsServer: MediaServer | undefined;
         let fewestRoomCount = Number.MAX_SAFE_INTEGER;

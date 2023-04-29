@@ -39,7 +39,7 @@ io.on("connection", (socket: Socket) => {
 app.get('/media-server', (req, res) => {
     try {
         const router = MediaServerRouter.getInstance();
-        const mediaServer = router.findServerThatHasFewestRooms();
+        const mediaServer = router.findAvailableServer();
         if (mediaServer == null) {
             res.status(404).send(new ResponseBody({message: "가용한 미디어 서버가 존재하지 않습니다."}));
             return;
