@@ -1,7 +1,7 @@
 import express from "express";
 import http from "http";
 import {Server, Socket} from "socket.io";
-import {MediaServerRouter} from "./MediaServerRouter";
+import {mediaServerRouter} from "./MediaServerRouter";
 import {MediaServerRegisterRequest, toMediaServer} from "./model/MediaServerRegisterRequest";
 import {ResponseBody} from "./model/ResponseBody";
 import {MediaServerGetResponse} from "./model/MediaServerGetResponse";
@@ -19,7 +19,6 @@ server.listen(PORT, () => {
 
 const io = new Server(server);
 io.on("connection", (socket: Socket) => {
-    const mediaServerRouter = MediaServerRouter.getInstance();
 
     console.log("A media server has connected.");
 
@@ -47,8 +46,7 @@ io.on("connection", (socket: Socket) => {
 app.get('/rooms/:roomId/media-server', (req, res) => {
     try {
         const roomId = req.params.roomId;
-        const router = MediaServerRouter.getInstance();
-        const mediaServer = router.findServerByRoomId(roomId) ?? router.findAvailableServer();
+        const mediaServer = mediaServerRouter.findServerByRoomId(roomId) ?? mediaServerRouter.findAvailableServer();
         if (mediaServer == null) {
             res.status(404).send(new ResponseBody({message: "가용한 미디어 서버가 존재하지 않습니다."}));
             return;

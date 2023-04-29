@@ -3,18 +3,9 @@ import {MediaServer} from "./MediaServer";
 
 export class MediaServerRouter {
 
-    private static _instance: MediaServerRouter;
-
-    private _repository: MediaServerRepository = new MediaServerRepository()
-
-    private constructor() {
-    }
-
-    public static getInstance(): MediaServerRouter {
-        if (!MediaServerRouter._instance) {
-            MediaServerRouter._instance = new MediaServerRouter();
-        }
-        return MediaServerRouter._instance;
+    public constructor(
+        private _repository: MediaServerRepository = new MediaServerRepository()
+    ) {
     }
 
     public register = (socketId: string, mediaServer: MediaServer) => {
@@ -53,3 +44,5 @@ export class MediaServerRouter {
         return fewestRoomsServer;
     }
 }
+
+export const mediaServerRouter = new MediaServerRouter();
