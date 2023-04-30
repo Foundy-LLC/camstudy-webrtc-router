@@ -16,6 +16,10 @@ export class MediaServer {
         return this._runningRoomIds.length;
     }
 
+    public get maxRoomCapacity(): number {
+        return this._maxRoomCapacity;
+    }
+
     public addRoom = (id: string) => {
         this._runningRoomIds = [...this._runningRoomIds, id];
     }

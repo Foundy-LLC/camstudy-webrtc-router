@@ -7,12 +7,15 @@ import {ResponseBody} from "./model/ResponseBody";
 import {MediaServerGetResponse} from "./model/MediaServerGetResponse";
 import {CREATED_ROOM, REGISTER_MEDIA_SERVER, REMOVED_ROOM} from "./constant/protocol";
 import dotenv from "dotenv";
+import {statusLogger} from "./StatusLogger";
 
 dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
 const PORT = process.env.PORT!
+
+statusLogger.startLogging();
 
 server.listen(PORT, () => {
     console.log(`Listening on port ${PORT}.`);

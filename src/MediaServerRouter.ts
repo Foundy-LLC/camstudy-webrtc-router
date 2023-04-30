@@ -1,5 +1,6 @@
 import {MediaServerRepository} from "./MediaServerRepository";
 import {MediaServer} from "./model/MediaServer";
+import {MediaRouterStatus} from "./model/MediaRouterStatus";
 
 export class MediaServerRouter {
 
@@ -42,6 +43,10 @@ export class MediaServerRouter {
             }
         }
         return fewestRoomsServer;
+    }
+
+    public getStatus = (): MediaRouterStatus => {
+        return new MediaRouterStatus(this._repository.getMediaServers());
     }
 }
 
