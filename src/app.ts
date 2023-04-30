@@ -32,7 +32,14 @@ io.on("connection", (socket: Socket) => {
 
     socket.on(REGISTER_MEDIA_SERVER, (request: MediaServerRegisterRequest, successCallback: () => void) => {
         mediaServerRouter.register(socket.id, toMediaServer(request));
-        console.log(`Registered a media server ${socket.id} with ${request.maxRoomCapacity} room capacity.`);
+        console.log(`
+――――――――――――――――――――――――――――――――――――――――――――――――
+Registered a media server ${socket.id}
+IP address : ${request.ip}
+Port number: ${request.port}
+Room status: ${request.runningRooms.length}/${request.maxRoomCapacity}
+――――――――――――――――――――――――――――――――――――――――――――――――
+        `.trim());
         successCallback();
     });
 
