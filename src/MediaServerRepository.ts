@@ -1,4 +1,4 @@
-import {MediaServer} from "./MediaServer";
+import {MediaServer} from "./model/MediaServer";
 
 export class MediaServerRepository {
 

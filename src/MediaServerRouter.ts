@@ -1,5 +1,5 @@
 import {MediaServerRepository} from "./MediaServerRepository";
-import {MediaServer} from "./MediaServer";
+import {MediaServer} from "./model/MediaServer";
 
 export class MediaServerRouter {
 

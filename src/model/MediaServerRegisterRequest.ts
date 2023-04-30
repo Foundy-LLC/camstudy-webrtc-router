@@ -1,4 +1,4 @@
-import {MediaServer} from "../MediaServer";
+import {MediaServer} from "./MediaServer";
 
 export interface MediaServerRegisterRequest {
     readonly ip: string;

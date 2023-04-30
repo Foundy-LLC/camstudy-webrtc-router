@@ -1,5 +1,5 @@
 import {MediaServerRepository} from "../src/MediaServerRepository";
-import {MediaServer} from "../src/MediaServer";
+import {MediaServer} from "../src/model/MediaServer";
 import {fakeAvailableMediaServer, fakeFulledMediaServer} from "./fake/MediaServer.fake";
 import {MediaServerRouter} from "../src/MediaServerRouter";
 
