@@ -2,7 +2,7 @@ import {mediaServerRouter} from "./MediaServerRouter";
 
 class StatusLogger {
 
-    private readonly _intervalMilli = 1000 * 60 * 5; // 5 minutes
+    private readonly _intervalMilli = 1000 * 60; // 1 minutes
     private _timer?: NodeJS.Timer;
 
     public startLogging = () => {
