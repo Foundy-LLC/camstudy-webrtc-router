@@ -9,7 +9,7 @@ export class MediaServer {
     }
 
     public get url(): string {
-        return `http://${this._ip}:${this._port}`;
+        return `https://${this._ip}:${this._port}`;
     }
 
     public get roomCount(): number {
